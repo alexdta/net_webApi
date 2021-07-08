@@ -1,0 +1,31 @@
+﻿API: Application Programming Interface
+Web API, operations that can be invoke over HTTP
+
+.Net
+Controllers receive the requests that get sent over that match a particular path.
+Action Methods are operations that are able to inspect the requests, carry out any necessary business logic, and also return a response back to the client.
+
+On the project:
+Controllers => Add => Controller => API => API Controller Empty
+
+Actions (CRUD):
+Create => POST => 201 (Created) || 400 (Bad Request)
+Read => GET => 200 (OK) || 404 (Not Found)
+Update => PUT/PATCH => 204 (No Content) || 404 (Not Found)
+Delete => DELETE => 204 (No Content) || 400 (Bad Request)
+
+Routing of the controller
+By default we will see something like on the top of the class that defines our controller: [Route("api/[controller]")]
+This means that we will access our controller from a URL like http://myhost/api/MyControllerName  
+We can also rename this route with something like: [Route("api/recipes")]
+And we will access our controller from a URL like:  http://myhost/api/recipes 
+
+Routing of the Actions
+We have the methods/actions: GetAllItems (Get), InsertItem (Post), UpdateItem (Put) and DeleteItem (Delete)
+The actions can be identified by the HTTP method, when we call the API through the URL http://myhost/api/controller, the controller will know the specific action just based on the method used
+We can also rename the actions by specifying a custom route, for example our method called GetAllItems [HttpGet] can be routed with [HttpGet(“all”)], this will give us a URL like http://myhost/api/controller/all 
+
+Additionally we can add parameters to our methods, for example our CreateItem [HttpPost] will need a parameter that specifies the item to create [HttpPost(“{item_name}”)], this will give us a URL like http://myhost/api/controller/{item_name}   => http://myhost/api/controller/computer  
+Using the custom route name with this method , [HttpPost(“create/{item_name}”)] will give us a more verbose URL like http://myhost/api/controller/create/{item_name}  => http://myhost/api/controller/create/computer  
+
+
